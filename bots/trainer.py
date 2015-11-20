@@ -96,14 +96,11 @@ class Trainer(object):
         self.hand = Hand()
         deck = deuces.Deck()
         self.board = deck.draw(5)
-        self.board = [deuces.Card.new("Jd"),deuces.Card.new("Ah"),deuces.Card.new("Td"),deuces.Card.new("Ac"),deuces.Card.new("9d")]
         for player in players:
             player.join_table(self._table, Table.BUY_IN)
             player.activate()
             player.set_pocket(*deck.draw(2))
             player.set_evaluator(self.evaluator)
-        players[0].set_pocket(deuces.Card.new("As"), deuces.Card.new("Th"))
-        players[1].set_pocket(deuces.Card.new("Qd"), deuces.Card.new("Kd"))
         self.hand.players = self._table.players
         self._table.prep(self.hand)
                 
