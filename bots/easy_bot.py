@@ -137,7 +137,7 @@ class EasyBot(Bot):
             if self.trainer:
                 # currently training
                 pass
-        print (self.name, action)
+        print (self.name, self.pocket, action)
         return action
                 
     
