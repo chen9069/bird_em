@@ -49,10 +49,13 @@ class Hand:
         self._turn = Street("TURN", count=1)
         self._river = Street("RIVER", count=1)
         self.streets = [self._flop, self._turn, self._river]
-        #
         self.pot = 0
         self.history = []
         self.players = []
+        # current street
+        self.street = None
+        # current max bet on table
+        self.cur_bet = 0
 
     @property
     def board(self):
@@ -80,6 +83,8 @@ class Hand:
         form["players"] = [player.get_profile() for player in self.players]
         form["history"] = copy.deepcopy(self.history)
         form["pot"] = self.pot
+        form["street"] = self.street
+        form["cur_bet"] = self.cur_bet
         #
         return form
    

@@ -28,7 +28,7 @@ class Bot:
     ====================  =====================================================
 
     DATA: 
-    name                  string; identifies your bot
+    name                  string; identifies your bots
 
     FUNCTIONS:
     get_action()          send an action to the engine for the hand
@@ -58,7 +58,7 @@ class Bot:
 
         Bot.set_pocket(cards) -> None
 
-        Dealer provides bot with cards
+        Dealer provides bots with cards
         """
         #insert storage and analysis logic
         #
@@ -85,5 +85,14 @@ class Bot:
         Receive your state from the engine.
         """
         pass
+    
+    def set_evaluator(self, evaluator):
+        
+        """
 
+        Bot.set_evaluator(evaluator) -> None
+
+        Dealer provides bots with evaluator
+        """
+        self.evaluator = evaluator
 

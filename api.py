@@ -38,6 +38,9 @@ class HandProfile(dict):
         self["history"] = []
         self["board"] = []
         self["players"] = []
+        self["pot"] = None
+        self["street"] = None
+        self["cur_bet"] = None
 
 class PlayerProfile(dict):
     """
@@ -55,6 +58,7 @@ class PlayerProfile(dict):
         self["active"] = False
         self["name"] = None
         self["stack"] = None
+        self["bet_amount"] = None
 
 #************************************************
 #                1.LEGAL ACTIONS                *
@@ -154,6 +158,6 @@ class PerformedAction(LegalAction):
     def __init__(self):
         LegalAction.__init__(self)
         self["actor"] = None
-
+        
 
              

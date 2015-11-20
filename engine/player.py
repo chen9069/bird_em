@@ -11,6 +11,7 @@ Module defines Player class, which provides a stateful wrapper for bots.
 
 from api import PlayerProfile
 from deuces3x.deuces import Card
+from .exceptions import OutOfMoneyError, StructureError
 
 
 
@@ -59,6 +60,7 @@ class Player:
         self.bot = None
         self.pocket = []
         self.stack = None
+        self.bet_amount = None
         self.table = None
 
     def __str__(self):
@@ -129,7 +131,7 @@ class Player:
             self._name = value
         else:
             c = "Cannot set name. Player inherits name from bot."
-            raise ManagedAttributeError(c)
+            #raise ManagedAttributeError(c)
 
     #************************************************
     #                 CONFIGURATION                 *
@@ -173,11 +175,21 @@ class Player:
         Stores integers on instance, passes down matching strings to bot.
         """
         self.pocket = [card1_int, card2_int]
+        self.bet_amount = 0
         
         card1_string = Card.int_to_pretty_str(card1_int)
         card2_string = Card.int_to_pretty_str(card2_int)
 
         self.bot.set_pocket(card1_string, card2_string)
+        
+    def set_evaluator(self, evaluator):
+        """
+
+        Player.set_evaluator() -> None
+        
+        Passes evaluator down to bot.
+        """
+        self.bot.set_evaluator(evaluator)
 
     #************************************************
     #             MANAGING STACK & POT              *
@@ -197,6 +209,7 @@ class Player:
         if amount <= self.stack:
             self.stack -= amount
             self.hand.pot += amount
+            self.bet_amount += amount
         else:
             c = "Player does not have enough money to make the bet."
             raise OutOfMoneyError(c)

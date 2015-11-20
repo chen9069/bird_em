@@ -12,12 +12,11 @@ Module loads two PseudoBot players and starts a game.
 
 #imports
 from bots.pseudo_bot import PseudoBot
+from bots.easy_bot import EasyBot
+from bots.trainer import Trainer
 from engine.dealer import Dealer
 from engine.player import Player
-
-
-
-
+    
 #constants
 #n/a
 
@@ -26,18 +25,19 @@ from engine.player import Player
 
 #
 valerie = Dealer()
-print("valerie will be our dealer.")
+#print("valerie will be our dealer.")
 
 matt_damon = Player("Matt")
 ed_norton = Player("Ed")
+trainer = Trainer()
 
-matt_damon.bot = PseudoBot("MattBot")
+matt_damon.bot = EasyBot("MattBot")
 ed_norton.bot = PseudoBot("EdBot")
 
+
+trainer = Trainer() 
+trainer.train(matt_damon)
+
 valerie.start_game(matt_damon, ed_norton)
-c = "To play a hand, run ``valerie.play_hand()``\n"
-print(c)
-
-
-
-
+#c = "To play a hand, run ``valerie.play_hand()``\n"
+valerie.play_hand();

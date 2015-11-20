@@ -85,7 +85,7 @@ class Dealer:
             # Update hand with post-flop order of action
             
             for street in self.hand.streets:
-                
+                self.hand.street = street.name
                 if street.cards:
                     # Already dealt cards for this street.
                     continue
@@ -240,6 +240,7 @@ class Dealer:
         otherwise. 
         """
         self.hand = Hand()
+        self.hand.street = "PRE_FLOP"
         self._table.prep(self.hand)       
         # Generally, Dealer modifies the hand. Table serves as an access
         # point to the hand for all of the players. 
@@ -254,6 +255,7 @@ class Dealer:
             # Deal to every player at the table to preserve duplication. 
             cards = self.deck.draw(2)
             player.set_pocket(*cards)
+            player.set_evaluator(self._judge)
 
         self._post_blinds()
 
@@ -398,6 +400,7 @@ class Dealer:
                 if not player.active:
                     continue
 
+                self.hand.cur_bet = high_bet
                 hand_profile = self._set_params(player, high_bet)
                 action = player.get_action(hand_profile)
                 legal_actions = hand_profile["legal_actions"]
