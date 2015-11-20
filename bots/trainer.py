@@ -21,7 +21,7 @@ import numpy as np
 class Trainer(object):
     """
 
-    Trainer objects trains the bot through let the bot play against itself and
+    Trainer objects trains the bot through making the bot play against itself and
     use regret minimization algorithm to adjust the mixed strategy to reach a
     Nash Equilibrium. 
     
@@ -101,6 +101,7 @@ class Trainer(object):
             player.activate()
             player.set_pocket(*deck.draw(2))
             player.set_evaluator(self.evaluator)
+            player.bot._rank = None
         self.hand.players = self._table.players
         self._table.prep(self.hand)
                 
