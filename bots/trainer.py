@@ -49,8 +49,8 @@ class Trainer(object):
       
 
     _ACTIONS = ["CALL", "CHECK", "FOLD", "RAISE", "BET"]
-    _SAMPLE_ITER = 2
-    _TRAIN_ITER = 1
+    _SAMPLE_ITER = 100
+    _TRAIN_ITER = 10
     
     def train(self, player):
         # create new a new bot shares the same strategy

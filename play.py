@@ -34,9 +34,9 @@ trainer = Trainer()
 matt_damon.bot = EasyBot("MattBot")
 ed_norton.bot = PseudoBot("EdBot")
 
-
-trainer = Trainer() 
-trainer.train(matt_damon)
+# each iteration took about 1 min, default is 100 iters
+# trainer = Trainer()
+# trainer.train(matt_damon)
 
 valerie.start_game(matt_damon, ed_norton)
 #c = "To play a hand, run ``valerie.play_hand()``\n"
